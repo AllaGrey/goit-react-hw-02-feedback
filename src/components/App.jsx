@@ -2,7 +2,6 @@ import { Feedback } from './AppStyled';
 import React, { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions/FeedbackOptions';
 import { Statistics } from './Statistics/Statistics';
-import { Notification } from './Notification/Notification';
 
 export class App extends Component {
   state = Object.freeze({
@@ -38,16 +37,13 @@ export class App extends Component {
           onLeaveFeedback={this.onLeaveFeedback}
           title={'Please leave feedback'}
         />
-        {this.countTotal() > 0 ? (
-          <Statistics
-            state={this.state}
-            title={'Statistics'}
-            total={this.countTotal()}
-            positivePercentage={Math.ceil(this.positivePercentage())}
-          />
-        ) : (
-          <Notification message={'There is no feedback'} />
-        )}
+        <Statistics
+          message={'There is no feedback'}
+          state={this.state}
+          title={'Statistics'}
+          total={this.countTotal()}
+          positivePercentage={Math.ceil(this.positivePercentage())}
+        />
       </Feedback>
     );
   }
